@@ -134,12 +134,18 @@ class Config(ConfigParser.ConfigParser):
         self.read(path)
 
     def getShotgunURL(self):
+        if os.environ.get('SHOTGUN_SERVER'):
+            return os.environ.get('SHOTGUN_SERVER')
         return self.get('shotgun', 'server')
 
     def getEngineScriptName(self):
+        if os.environ.get('SHOTGUN_SCRIPT_NAME'):
+            return os.environ.get('SHOTGUN_SCRIPT_NAME')
         return self.get('shotgun', 'name')
 
     def getEngineScriptKey(self):
+        if os.environ.get('SHOTGUN_API_KEY'):
+            return os.environ.get('SHOTGUN_API_KEY')
         return self.get('shotgun', 'key')
 
     def getEngineProxyServer(self):
